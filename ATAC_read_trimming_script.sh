@@ -17,11 +17,11 @@ ATAC=(ATAC_1_CGAGGCTG_S1_L008 ATAC_2_AAGAGGCA_S2_L008 ATAC_3_TAAGGCGA_S3_L008 AT
 
 for i in ${!ATAC[@]}
 do
-bsub -M 20 "bbduk.sh in=../../../HTSF/161202_UNC32-K00270_0031_BHCKF2BBXX/"${ATAC[i]}"_R1_001.fastq.gz \
-  in2=../../../HTSF/161202_UNC32-K00270_0031_BHCKF2BBXX/"${ATAC[i]}"_R2_001.fastq.gz \
-  out=FASTQ_FILES/"${NAMES[i]}"-R1.trimmed.fastq \
-  out2=FASTQ_FILES/"${NAMES[i]}"-R2.trimmed.fastq \
-  ref=/nas02/apps/bbmap-"$bbmap"/bbmap/resources/adapters.fa \
-  k=13 \
-  ktrim=r"
+  bbduk.sh in=../../../HTSF/161202_UNC32-K00270_0031_BHCKF2BBXX/${ATAC[i]}_R1_001.fastq.gz \
+    in2=../../../HTSF/161202_UNC32-K00270_0031_BHCKF2BBXX/${ATAC[i]}_R2_001.fastq.gz \
+    out=FASTQ_FILES/${NAMES[i]}-R1.trimmed.fastq \
+    out2=FASTQ_FILES/${NAMES[i]}-R2.trimmed.fastq \
+    ref=/nas02/apps/bbmap-$bbmap/bbmap/resources/adapters.fa \
+    k=13 \
+    ktrim=r
 done
