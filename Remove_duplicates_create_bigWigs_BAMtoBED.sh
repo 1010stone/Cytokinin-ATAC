@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-# Script to remove duplicate reads, make bigWigs and convert bam to bed.
+# Script to remove duplicate reads, convert BAM to BED and make bigWigs from BAM files.
 
 # Load in modules
 module load samtools bedtools deeptools
