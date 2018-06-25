@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-# Example script used to convert SAM to BAM and sort and index BAM files
+# Example script used to map reads, convert SAM to BAM and then sort and index BAM files
 
 # Load in modules
 module load samtools bbmap bowtie deeptools bedtools
