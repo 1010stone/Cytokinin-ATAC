@@ -17,4 +17,4 @@ multiBamSummary bins --bamfiles \
 --colorMap Reds \
 --labels ATAC_1 ATAC_2 ATAC_n \
 --zMin 0.70 \
---zMax 1.00 \
+--zMax 1.00
