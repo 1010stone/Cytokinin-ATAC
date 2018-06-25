@@ -8,7 +8,8 @@ module load samtools bbmap bedtools
 # Create variable containing file names.
 ATAC=(ATAC_1 ATAC_2 ATAC_n)
 
-# Create variable containing number of reads to subsample.
+# Create variable containing number of reads to subsample. 
+# This script was also used to subsample 5 M reads to obtain SPOT scores.
 READS="20000000"
 
 # Create variable that contains the total number of reads for each dataset.
