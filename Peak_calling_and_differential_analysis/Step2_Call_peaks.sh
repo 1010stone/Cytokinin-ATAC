@@ -8,11 +8,21 @@ ATAC="ATAC_1 ATAC_2 ATAC_n"
 
 for ATAC in $ATAC
   do
-    makeTagDirectory TAG_DIRECTORIES/$ATAC BED_FILES/$ATAC_SHIFTED_SORTED.bed -format bed \
+    makeTagDirectory \
+      $ATAC # output tag directories \
+      $ATAC.bed -format bed \ # input is fully processed BED file containing (nuclear, non-duplicated, shifted) reads.
     
-    && findPeaks TAG_DIRECTORIES/$ATAC -region -size 200 \ 
-    -minDist 202 -o PEAK_FILES/$ATAC_peaks.txt -gsize 135000000 -tbp 0 \
+    && findPeaks \
+      $ATAC \ # output tag directories
+      -region -size 200 \ 
+      -minDist 202 \
+      -o $ATAC_peaks.txt \ # output peak file
+      -gsize 135000000 \
+      -tbp 0 \
     
-    && awk 'NR < 35; NR > 35 {OFS = "\t"; print $2, $3, $4}' PEAK_FILES/$ATAC_peaks.txt \ 
-    |bedtools sort -i - >PEAK_FILES/$ATAC_peaks.bed  
+    # awk command to process peak.txt file and output genomic coordinates in bed format
+    # skips first 35 lines, then outputs genomic coordinates of peaks
+    && awk 'NR < 35; NR > 35 {OFS = "\t"; print $2, $3, $4}' $ATAC_peaks.txt \
+    # pipes resulting bed file for sorting via bedtools.
+    |bedtools sort -i - > $ATAC_peaks.bed  
   done
