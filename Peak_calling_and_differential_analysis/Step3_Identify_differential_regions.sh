@@ -5,12 +5,14 @@
 module load perl
 
 diffReps.pl \
-  -tr BED_FILES/(Treatment_ATAC_Rep1)_SHIFTED_SORTED.bed \ 
-    BED_FILES/(Treatment_ATAC_Rep2).bed \ 
-  -co BED_FILES/(Control_ATAC_Rep1)_SHIFTED_SORTED.bed 
-    BED_FILES/(ControL_ATAC_Rep2)_SHIFTED_SORTED.bed \
+  -tr ATAC_Treatment_Rep1.bed \ 
+      ATAC_Treatment_Rep2.bed \
+      ATAC_Treatment_RepN.bed \
+  -co ATAC_Control_Rep1.bed \ 
+      ATAC_Control_Rep2.bed \
+      ATAC_Control_RepN.bed
   -ch genome.txt \
   -ns b \
   -mo n \
-  -re DIFFREPS/diffReps_WT_Results.txt \
+  -re output_results.txt \
   -me nb"
