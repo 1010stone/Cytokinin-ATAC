@@ -10,8 +10,9 @@ ATAC="ATAC_1 ATAC_2 ATAC_n"
 
 for ATAC in $ATAC
   do
-    samtools rmdup BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED.bam \ 
-      BAM_FILES/$ATAC"_MAPPED_SORTED_EXTRACTED_CLEANED.bam \
+    # remove duplicates
+    samtools rmdup $ATAC_MAPPED_SORTED.bam \ 
+      $ATAC"_MAPPED_SORTED_CLEANED.bam \
     
     && samtools index BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.bam \
     
