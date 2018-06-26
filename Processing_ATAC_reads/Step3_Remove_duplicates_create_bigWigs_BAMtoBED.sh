@@ -12,17 +12,17 @@ for ATAC in $ATAC
   do
     # remove duplicates
     samtools rmdup $ATAC_MAPPED_SORTED.bam \ 
-      $ATAC"_MAPPED_SORTED_CLEANED.bam \
+      $ATAC_MAPPED_SORTED_CLEANED.bam \
     
-    && samtools index BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.bam \
+    # index bam file
+    && samtools index $ATAC_MAPPED_SORTED_CLEANED.bam \
     
-    && bedtools bamtobed -i BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.bam \
-      >BED_FILES/$ATAC.bed \
+    # convert bam to bed
+    && bedtools bamtobed -i $ATAC_MAPPED_SORTED_CLEANED.bam \
+      >$ATAC.bed \
     
-    && samtools idxstats BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.bam \
-      >BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.idxstats.txt \
-    
-    && bamCoverage -o BIGWIGS/$ATAC_allReads.bw \ 
-      -b BAM_FILES/$ATAC_MAPPED_SORTED_EXTRACTED_CLEANED.bam -of 'bigwig' -p 8 \ 
+    # create bigwig file
+    && bamCoverage -o $ATAC_allReads.bw \ 
+      -b $ATAC_MAPPED_SORTED_CLEANED.bam -of 'bigwig' -p 8 \ 
        --normalizeTo1x 135000000 --binSize 10 \
   done
