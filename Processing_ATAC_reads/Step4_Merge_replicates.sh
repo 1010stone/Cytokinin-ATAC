@@ -3,7 +3,7 @@
 # Script to merged biological replicates.
 
 samtools merge \
-  BAM_FILES/ATAC_(Control or Treated)_MERGED.bam \
-  BAM_FILES/ATAC_1_SHIFTED_SORTED.bam \
-  BAM_FILES/ATAC_2_SHIFTED_SORTED.bam \
-  BAM_FILES/ATAC_n_SHIFTED_SORTED.bam \
+  ATAC_(Control or Treated)_MERGED.bam \ # output of merged bam file
+  ATAC_1_SHIFTED_SORTED.bam \ # input bam 1
+  ATAC_2_SHIFTED_SORTED.bam \ # input bam 2
+  ATAC_n_SHIFTED_SORTED.bam \ # input bam n
