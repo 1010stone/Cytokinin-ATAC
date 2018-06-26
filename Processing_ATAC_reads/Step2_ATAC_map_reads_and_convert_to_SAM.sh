@@ -16,8 +16,8 @@ for ATAC in $ATAC
       -2 $ATAC-R2.trimmed.fastq \ # input trimmed reads for read pair 2
       -S $ATAC_MAPPED.sam \ # output mapped reads in sam format
    
-    # convert sam to bam
-    && samtools view -b $ATAC_MAPPED.sam \ 
+    # convert sam to bam and filter out organellar reads
+    && samtools view 1 2 3 4 5 -b $ATAC_MAPPED.sam \ 
       |samtools sort - -o $ATAC_MAPPED_SORTED.bam \
     
     # index bam file
