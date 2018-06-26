@@ -5,10 +5,11 @@
 module load deeptools
 
 multiBamSummary bins --bamfiles \
-../../Data6/BAM_FILES/ATAC_1_SUBSAMPLED.bam \
-../../Data6/BAM_FILES/ATAC_2_SUBSAMPLED.bam \
-../../Data6/BAM_FILES/ATAC_n_SUBSAMPLED.bam \
--out results.npz --outRawCounts readCounts.tab \
+  ATAC_1_SUBSAMPLED.bam \
+  ATAC_2_SUBSAMPLED.bam \
+  ATAC_n_SUBSAMPLED.bam \
+  -out results.npz \
+  --outRawCounts readCounts.tab \
 
 && plotCorrelation --corData results.npz \
 --corMethod spearman --whatToPlot heatmap --skipZeros --removeOutliers \
