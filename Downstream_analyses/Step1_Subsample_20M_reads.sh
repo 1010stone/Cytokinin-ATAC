@@ -15,10 +15,10 @@ READS="20000000"
 # Create variable that contains the total number of reads for each dataset.
 declare -a total=()
 
-for i in "${!ATAC[@]}"
+for i in ${!ATAC[@]}
 do
-	total+=( "$(samtools view -c -F 260 BAM_FILES/${ATAC[i]}_SHIFTED_SORTED.bam)" )
-	echo ${arr[*]}
+	total+=( $(samtools view -c -F 260 ${ATAC[i]}_SHIFTED_SORTED.bam) )
+	echo ${total[*]}
 done
 
 declare -p total
@@ -28,9 +28,9 @@ declare -p total
 declare -a factor=()
 
 
-for i in "${!total[@]}"
+for i in ${!total[@]}
 do
-	factor+=($(bc <<< "scale=2; $READS/${total[i]}"))
+	factor+=($(bc <<< scale=2; $READS/${total[i]}))
 	echo ${factor[*]}
 done
 
@@ -39,6 +39,7 @@ declare -p factor
 
 for i in ${!ATAC[@]}
 do
-	samtools view -s ${factor[i]} -b BAM_FILES/${ATAC[i]}_SHIFTED_SORTED.bam >BAM_FILES/${ATAC[i]}_SUBSAMPLED.bam" \
-	&& samtools index BAM_FILES/${ATAC[i]}_SUBSAMPLED.bam
+	samtools view -s ${factor[i]} -b ${ATAC[i]}_SHIFTED_SORTED.bam >${ATAC[i]}_SUBSAMPLED.bam \
+	
+	&& samtools index ${ATAC[i]}_SUBSAMPLED.bam
 done
