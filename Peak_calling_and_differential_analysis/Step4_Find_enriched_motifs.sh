@@ -5,9 +5,9 @@
 module load homer
 
 findMotifsGenome.pl \
-  DIFFREPS/(Differtial_regions).bed \
+  Differtial_regions.bed \
   tair10 \
-  DIFFREPS/MOTIFS/ \
+  output_directory/ \
   -size given \
   -len 6,10,12 \
   -preparse \
