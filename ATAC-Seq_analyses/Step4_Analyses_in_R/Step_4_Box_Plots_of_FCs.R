@@ -1,4 +1,7 @@
-#Plotting box plots of fold changes in roots
+#Plotting box plots of fold changes
+Roots_FC1.2$absolute_log2FC = abs(Roots_FC1.2$log2FC)
+Shoots_FC1.2$absolute_log2FC = abs(Shoots_FC1.2$log2FC)
+
 #Change exons to display just exon
 Roots_FC1.2$annotation[grep(pattern = "Exon", ignore.case = T, x = Roots_FC1.2$annotation)] = "Other Exon"
 Shoots_FC1.2$annotation[grep(pattern = "Exon", ignore.case = T, x = Shoots_FC1.2$annotation)] = "Other Exon"
