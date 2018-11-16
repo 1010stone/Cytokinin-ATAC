@@ -143,7 +143,7 @@ raw <- DGEList(counts=counts,group=group)
 nrow(raw)
 keep <- rowSums(cpm(raw)>1) >= 3 # at least 1 CPM in 3 or more samples 
 filtered <- raw[keep, keep.lib.sizes=T]
-nrow(filtered) #19117
+nrow(filtered) #18428
 
 ###   RUVseq  #####
 ##################
