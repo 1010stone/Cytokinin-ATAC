@@ -78,17 +78,17 @@ phyper(7, 56+7, 25000-56-7, 139+7+56, lower.tail = FALSE, log.p = F)
 
 #Overlap of root and shoot differentially expressed genes 
 #Venn of overlaps
-Gene_Overlaps = list("Roots" = RootsGenes$geneId, 
-                     "Shoots" = ShootsGenes$geneId)
+Gene_Overlaps = list("Roots" = RootsGenes$gene, 
+                     "Shoots" = ShootsGenes$gene)
 venn_overlap = venn.diagram(Gene_Overlaps, cex = 1, col = c("red", "black"), 
                             ext.percent = 0, filename = NULL)
 grid.draw(venn_overlap)
 
 #Overlap of root and shoot differential ATAC regions 
 #Venn of overlap
-a = sum(Roots_all_FC1.2_GR %over% Shoots_all_FC1.2_GR=="FALSE")
-b = sum(Shoots_all_FC1.2_GR %over% Roots_all_FC1.2_GR =="FALSE")
-overlaps = numOverlaps(Roots_all_FC1.2_GR, Shoots_all_FC1.2_GR)
+a = sum(Roots_all_FC1.2 %over% Shoots_all_FC1.2 =="FALSE")
+b = sum(Shoots_all_FC1.2 %over% Roots_all_FC1.2 =="FALSE")
+overlaps = numOverlaps(Roots_all_FC1.2, Shoots_all_FC1.2)
 
 venn <- draw.pairwise.venn(area1 = a + overlaps, area2 = b + overlaps, 
                            cross.area = overlaps, cex = 1, 
