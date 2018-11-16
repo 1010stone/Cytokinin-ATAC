@@ -12,8 +12,8 @@ now=$(date +"%m_%d_%Y")
 echo $now
 echo $1 $2 $3
 # script to map, index and count reads
-genes="/proj/seq/data/MSU6_rice_Ensembl/Annotation/Genes/genes.gtf"
-ref="/proj/seq/data/MSU6_rice_Ensembl/Sequence/Bowtie2Index/genome"
+genes="/path/to/gtf/file/name.gtf"
+ref="/path/to/genome/index/genome"
 
 echo "mapping ${3}"
 tophat -p 4 -G $genes -o Results/$3.thout $ref $1 $2_2.fq.gz
