@@ -8,7 +8,6 @@ Count = read.delim("ROOTS_UP_COUNTS_FILE.txt", header = TRUE, check.names = FALS
 
 Count$geneId = Roots_FC1.2_up$geneId
 Count$annotation = Roots_FC1.2_up$annotation
-Count = Count[, -c(6,7)]
 
 Matrix = as.matrix(Count[, c(4:7)])
 row.names(Matrix) = Count$geneId
@@ -24,7 +23,7 @@ heatmap_scale = heatmap.2(Matrix,
           labRow = "")
           
 #Bargraph of counts in annotations by genotype
-Count_melted = melt(Count, id.vars = c("chr", "start", "end"))
+Count_melted = melt(Count, id.vars = c("chr", "start", "end", "geneId", "annotation"))
 
 Count_melted$treatment = c(rep("control", 666), rep("BA", 666), rep("control", 666), rep("BA", 666))
 
@@ -51,10 +50,8 @@ model = lm(value ~ variable, Count_melted)
 anova(model)
 
 #Turky post hoc test anova
-TUKEY = TukeyHSD(aov(value ~ variable, Count_melted), ordered = T)
+TUKEY = HSD.test(model, "variable")
 TUKEY
-TUKEY1 = HSD.test(model, "variable")
-TUKEY1
 
 #Plot results
 ggplot(Count_melted_summ, aes(x = treatment, y = mean, fill = name, ymax = 500)) + 
@@ -74,9 +71,3 @@ ggplot(Count_melted_summ, aes(x = treatment, y = mean, fill = name, ymax = 500))
        legend.position = "none", 
        axis.title = element_blank(),
        axis.text.x = element_blank())
-
-ggplot(Count_melted, aes(x = variable, y = value)) + 
-  geom_violin(scale = "count")
-  
-ggplot(Count_melted, aes(x = variable, y = value)) + 
-  geom_boxplot() + theme_bw()
