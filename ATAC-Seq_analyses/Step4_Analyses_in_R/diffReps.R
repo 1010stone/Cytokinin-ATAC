@@ -49,3 +49,21 @@ Roots_FC1.2_up = Roots_FC1.2[Roots_FC1.2$FC >= 1.2, ]
 Roots_FC1.2_down = Roots_FC1.2[Roots_FC1.2$FC <= 0.8, ]
 Shoots_FC1.2_up = Shoots_FC1.2[Shoots_FC1.2$FC >= 1.2, ]
 Shoots_FC1.2_down = Shoots_FC1.2[Shoots_FC1.2$FC <= 0.8, ]
+                                    
+#Plot a bargraph of different annotation features.
+#Create diffReps List
+Roots_FC1.2_GR = toGRanges(Roots_FC1.2)
+Shoots_FC1.2_GR = toGRanges(Shoots_FC1.2)
+
+#Create annotation of diff regions
+Roots_FC1.2_Anno <- annotatePeak(Roots_FC1.2_GR, TxDb=tair10,
+  tssRegion = c(-3000, 3000), verbose = TRUE)
+Shoots_FC1.2_Anno <- annotatePeak(Shoots_FC1.2_GR, TxDb=tair10,
+  tssRegion = c(-3000, 3000), verbose = TRUE)
+                                    
+plotAnnoBar(Roots_FC1.2_Anno) + theme(axis.text=element_text(size=18), 
+  axis.title=element_text(size=18), plot.title=element_text(size=18), 
+  legend.text=element_text(size = 12))
+plotAnnoBar(Shoots_FC1.2_Anno) + theme(axis.text=element_text(size=18), 
+  axis.title=element_text(size=18), plot.title=element_text(size=18), 
+  legend.text=element_text(size = 12))                                    
